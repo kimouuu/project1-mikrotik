@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\multiro;
-use App\Models\nservice;
+use App\Models\Multiro;
+use App\Models\Nservice;
 use Illuminate\Http\Request;
 
 
-class multirocontroller extends Controller
+class MultiroController extends Controller
 {
     public function index()
     {
-        $multiro = multiro::all();
+        $multiro = Multiro::all();
         return view('multiro.index', [
             'multiro' => $multiro
         ]);
@@ -20,7 +20,7 @@ class multirocontroller extends Controller
     public function create()
     {
         return view('multiro.create', [
-            'nservice' => nservice::all(),
+            'nservice' => Nservice::all(),
         ]);
     }
 
@@ -40,7 +40,7 @@ class multirocontroller extends Controller
             'host', 'username', 'password', 'router', 'service_id'
         ]);
 
-        $multiro = multiro::create($array);
+        $multiro = Multiro::create($array);
         return redirect()->route('multiro.index')
             ->with('success_message', 'Berhasil menambah user baru');
     }
@@ -58,12 +58,12 @@ class multirocontroller extends Controller
     public function edit($id)
     {
         //Menampilkan Form Edit multiro
-        $multiro = multiro::find($id);
+        $multiro = Multiro::find($id);
         if (!$multiro) return redirect()->route('multiro.index')
             ->with('error_message', 'multiro dengan id = ' . $id . ' tidak ditemukan');
         return view('multiro.edit', [
             'multiro' => $multiro,
-            'nservice' => nservice::all()
+            'nservice' => Nservice::all()
         ]);
     }
 
@@ -72,7 +72,7 @@ class multirocontroller extends Controller
     //     return view('multiro.edit');
     // }
 
-    public function update(Request $request, multiro $multiro)
+    public function update(Request $request, Multiro $multiro)
     {
         $request->validate([
             'host' => 'required',
@@ -87,7 +87,7 @@ class multirocontroller extends Controller
         return redirect()->route('multiro.index')->with('success', 'Router updated successfully.');
     }
 
-    public function destroy(multiro $multiro)
+    public function destroy(Multiro $multiro)
     {
         $multiro->delete();
 
