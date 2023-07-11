@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\multirocontroller;
+use App\Http\Controllers\nservicecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('nservice', nservicecontroller::class);
+Route::resource('multiro', multirocontroller::class);
