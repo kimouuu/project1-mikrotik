@@ -39,7 +39,7 @@ class multirocontroller extends Controller
         $array = $request->only([
             'host', 'username', 'password', 'router', 'service_id'
         ]);
-        $array['password'] = bcrypt($array['password']);
+
         $multiro = multiro::create($array);
         return redirect()->route('multiro.index')
             ->with('success_message', 'Berhasil menambah user baru');
