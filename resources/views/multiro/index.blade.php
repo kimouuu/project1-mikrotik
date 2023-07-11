@@ -57,7 +57,7 @@
                             <td>{{ $mltr->username }}</td>
                             <td>{{ $mltr->password }}</td>
                             <td>{{ $mltr->router }}</td>
-                            <td>{{ $mltr->service_id}}</td>
+                            <td>{{ $mltr->service?->service}}</td>
                             <td>{{ $mltr->opsi}}
                                 <!-- <a href="{{route( 'multiro.edit', $mltr) }}" class="btn btn-success btn-sm">EDIT</a> -->
                                 <b button class="btn btn-danger btn-sm">Connect</button>
