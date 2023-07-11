@@ -27,5 +27,5 @@ Route::get('mikrotik', [MikrotikController::class, 'index'])->name('home');
 
 Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home .store');
 
-Route::resource('nservice', nservicecontroller::class);
-Route::resource('multiro', multirocontroller::class);
+Route::resource('nservice', NserviceController::class);
+Route::resource('multiro', MultiroController::class);
