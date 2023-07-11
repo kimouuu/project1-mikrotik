@@ -15,9 +15,17 @@ use App\Http\Controllers\nservicecontroller;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [AuthController::class, 'index'])->name('login');
+
+Route::post('login', [AuthController::class, 'login'])->name('loginpost');
+
+Route::get('mikrotik', [MikrotikController::class, 'index'])->name('home');
+
+Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home .store');
 
 Route::resource('nservice', nservicecontroller::class);
 Route::resource('multiro', multirocontroller::class);
