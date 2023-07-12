@@ -41,7 +41,7 @@
                         <label for="service_id" class="form-label">Service</label>
                         <select class="form-control" name="service_id" id="service">
                             @foreach ($nservice as $nsv)
-                            <option value="{{ $nsv->id }}" {{ ($multiro->fservice->service_id ?? old('service_id')) == $nsv->id ? 'selected' : '' }}>
+                            <option value="{{ $nsv->id }}" {{($multiro->service->service_id ?? old('service_id')) == $nsv->id ? 'selected' : '' }}>
                                 {{ $nsv->service }}
                             </option>
                             @endforeach
