@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\multirocontroller;
 use App\Http\Controllers\nservicecontroller;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MikrotikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,7 @@ Route::post('login', [AuthController::class, 'login'])->name('loginpost');
 Route::get('mikrotik', [MikrotikController::class, 'index'])->name('home');
 
 Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home .store');
+
 
 Route::resource('nservice', NserviceController::class);
 Route::resource('multiro', MultiroController::class);
