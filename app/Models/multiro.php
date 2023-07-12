@@ -16,7 +16,7 @@ class Multiro extends Model
         'router',
         'service_id'
     ];
-    public function fservice()
+    public function service()
     {
         return $this->belongsTo(nservice::class, 'service_id', 'id');
     }

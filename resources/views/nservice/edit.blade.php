@@ -19,7 +19,7 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label class="form-label">Service</label>
-                        <input type="text" class="form-control" id="service" placeholder="Name Service" name="service" value="{{$nsv->nama_service ?? old('nama_service')}}"> @error('Service') <span class="text-danger">{{$massage}}</span> @enderror
+                        <input type="text" class="form-control" id="service" placeholder="Name Service" name="service" value="{{$nsv->nama_service ?? old('nama_service')}}">
                     </div>
 
                     <div class="card-footer">
