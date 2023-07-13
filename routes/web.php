@@ -22,7 +22,7 @@ use App\Http\Controllers\GuzzleController;
 //     return view('welcome');
 // });
 
-Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 Route::post('login', [AuthController::class, 'login'])->name('loginpost');
 
@@ -31,5 +31,9 @@ Route::get('mikrotik', [MikrotikController::class, 'index'])->name('home');
 Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home .store');
 
 Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
+
+Route::as('multiro.')->group(function () {
+    Route::resource('', MultiroController::class, ['parameters' => ['' => 'multiro']]);
+});
+
 Route::resource('nservice', NserviceController::class);
-Route::resource('multiro', MultiroController::class);
