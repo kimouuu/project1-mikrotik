@@ -39,7 +39,7 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <th>ID</th>
                         <th>HOST</th>
@@ -58,13 +58,13 @@
                             <td>{{ $mltr->password }}</td>
                             <td>{{ $mltr->router }}</td>
                             <td>{{ $mltr->service?->service}}</td>
-                            <td>{{ $mltr->opsi}}
+                            <td class="d-flex">{{ $mltr->opsi}}
                                 {{-- <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a> --}}
 
-                                <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-xs">
+                                <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm">
                                     Edit
                                 </a>
-                                <form method="POSt" action="{{ route('multiro.destroy', $mltr->id) }}">
+                                <form method="POSt" action="{{ route('multiro.destroy', $mltr->id) }}" class="ms-2">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-md btn-danger sm-1">

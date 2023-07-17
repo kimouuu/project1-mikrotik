@@ -6,6 +6,7 @@ use App\Http\Controllers\nservicecontroller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MikrotikController;
 use App\Http\Controllers\GuzzleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home.store'
 Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
 
 Route::resource('nservice', nservicecontroller::class);
+
+Route::resource('users', UserController::class);
 
 Route::as('multiro.')->group(function () {
     Route::resource('', MultiroController::class, ['parameters' => ['' => 'multiro']]);

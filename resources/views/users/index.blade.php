@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SERVICE</title>
+    <title>USER</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 {{-- <style>
@@ -30,8 +30,8 @@
 <body>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-5">Service</h1>
-        <a href="{{ route('nservice.create') }}" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
+        <h1 class="text-center mb-5">User</h1>
+        <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">TAMBAH USER</a>
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
@@ -41,21 +41,26 @@
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
-                        <th>ID</th>
-                        <th>Nama Service</th>
-                        <th>Opsi</th>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Jabatan</th>
+                            <th>Opsi</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        @foreach ($nservice as $key => $nsv)
+                        @foreach($users as $key => $user)
                         <tr>
-                            <th>{{ $nsv->id}}</th>
-                            <td>{{ $nsv->service}}</td>
-
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->password}}</td>
+                            <td>{{$user->jabatan}}</td>
                             <td class="d-flex">
-                                <a href="{{route('nservice.edit', $nsv->id)}}" class="btn btn-sm btn-primary">
+                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-primary">
                                     Edit
                                 </a>
-                                <form method="POST" action="{{ route('nservice.destroy', $nsv->id) }}" class="ms-2">
+                                <form method="POST" action="{{ route('users.destroy', $user->id) }}" class="ms-2">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger sm-1">
