@@ -39,10 +39,11 @@
         @endif
         <div class="card">
             <div class="card-body">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <th>ID</th>
                         <th>Nama Service</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         @foreach ($nservice as $key => $nsv)
@@ -50,14 +51,14 @@
                             <th>{{ $nsv->id}}</th>
                             <td>{{ $nsv->service}}</td>
 
-                            <td>
-                                <a href="{{route('nservice.edit', $nsv->id)}}" class="btn btn-primary btn-xs">
+                            <td class="d-flex">
+                                <a href="{{route('nservice.edit', $nsv->id)}}" class="btn btn-sm btn-primary">
                                     Edit
                                 </a>
-                                <form method="POSt" action="{{ route('nservice.destroy', $nsv->id) }}">
+                                <form method="POST" action="{{ route('nservice.destroy', $nsv->id) }}" class="ms-2">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-md btn-danger sm-1">
+                                    <button type="submit" class="btn btn-sm btn-danger sm-1">
                                         Hapus
                                     </button>
                                 </form>
