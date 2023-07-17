@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nservice;
+use App\Models\nservice;
 use Illuminate\Http\Request;
 
-class NserviceController extends Controller
+class nserviceController extends Controller
 {
     public function index()
     {
-        $nservice = Nservice::all();
+        $nservice = nservice::all();
         return view('nservice.index', [
             'nservice' => $nservice
         ]);
@@ -26,7 +26,7 @@ class NserviceController extends Controller
             'service' => 'required',
         ]);
 
-        Nservice::create($request->all());
+        nservice::create($request->all());
 
         return redirect()->route('nservice.index')->with('success', 'nservices created successfully.');
     }
@@ -34,14 +34,14 @@ class NserviceController extends Controller
     public function edit($id)
     {
 
-        $nservice = Nservice::find($id);
+        $nservice = nservice::find($id);
         if (!$nservice) return redirect()->route('nservice.index');
         return view('nservice.edit', [
             'nservice' => $nservice
         ]);
     }
 
-    public function update(Request $request, Nservice $nservice)
+    public function update(Request $request, nservice $nservice)
     {
         $request->validate([
             'service' => 'required',
@@ -55,7 +55,7 @@ class NserviceController extends Controller
     public function show()
     {
     }
-    public function destroy(Nservice $nservice)
+    public function destroy(nservice $nservice)
     {
         $nservice->delete();
 

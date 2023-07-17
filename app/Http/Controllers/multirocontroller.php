@@ -93,4 +93,8 @@ class MultiroController extends Controller
 
         return to_route('multiro.index')->with('success', 'Router deleted successfully.');
     }
+    public function connect(Multiro $multiro)
+    {
+        //
+    }
 }
