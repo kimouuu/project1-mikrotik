@@ -94,8 +94,12 @@ class MultiroController extends Controller
 
         return to_route('multiro.index')->with('success', 'Router deleted successfully.');
     }
-    public function connect(Multiro $multiro)
+    public function connect($multiroId, $service)
     {
-        //
+        $router = Multiro::find($multiroId);
+        if (!$router) {
+            return redirect()->route('multiro.index')->with('error', 'Router not found.');
+        }
+        return redirect()->route('login');
     }
 }
