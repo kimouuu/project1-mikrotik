@@ -59,9 +59,7 @@
                             <td>{{ $mltr->router }}</td>
                             <td>{{ $mltr->service?->service}}</td>
                             <td class="d-flex">{{ $mltr->opsi}}
-                                <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm ms-2" >
-                                    Connect
-                                </a>
+
                                 <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm ms-2 ">
                                     Edit
                                 </a>
@@ -72,7 +70,9 @@
                                         Hapus
                                     </button>
                                 </form>
-
+  <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm ms-2" >
+                                    Connect
+                                </a>
 
                             </td>
 
