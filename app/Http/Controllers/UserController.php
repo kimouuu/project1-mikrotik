@@ -52,7 +52,7 @@ class UserController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
@@ -72,14 +72,12 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      *  @param int $id
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
         //Menghapus User
         $user = User::find($id);
-
-        if ($id == $request->user()->id) return redirect()->route('users.index');
 
         if ($user) $user->delete();
 
