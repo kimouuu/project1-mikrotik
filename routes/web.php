@@ -36,7 +36,7 @@ Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
 Route::resource('nservice', nservicecontroller::class);
 
 Route::resource('users', UserController::class);
-Route::get('/connect/{multiro}/{service}', 'MultiroController@connect')->name('multiro.connect');
+Route::get('/connect/{multiro}/{service}', [multirocontroller::class, 'connect'])->name('multiro.connect');
 Route::as('multiro.')->group(function () {
     Route::resource('', MultiroController::class, ['parameters' => ['' => 'multiro']]);
 });
