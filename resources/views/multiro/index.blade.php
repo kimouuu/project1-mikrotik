@@ -64,7 +64,7 @@
                                 <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a> 
 
   
-                                <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm">
+                                <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm ms-2">
                                     Edit
                                 </a>
                                 <form method="POSt" action="{{ route('multiro.destroy', $mltr->id) }}" class="ms-2">
