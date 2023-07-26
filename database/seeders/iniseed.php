@@ -17,14 +17,14 @@ class iniseed extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@mail.com',
-            'password' => 'password',
+            'password' => bcrypt('password'),
             'jabatan' => 'admin',
         ]);
 
         User::create([
             'name' => 'staff',
             'email' => 'staff@mail.com',
-            'password' => 'password',
+            'password' => bcrypt('password'),
             'jabatan' => 'staff',
         ]);
     }

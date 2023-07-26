@@ -31,6 +31,7 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-5">Service</h1>
+        <a href= "{{route('loginin') }}" class="btn btn-danger mb-3">Logout</a>
         <a href="{{ route('nservice.create') }}" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
         @if (session('success'))
         <div class="alert alert-success" role="alert">
