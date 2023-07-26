@@ -70,7 +70,7 @@
                                         Hapus
                                     </button>
                                 </form>
-                                 <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm ms-2" >
+                                 <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" name="connect" class="btn btn-success btn-sm ms-2" >
                                     Connect
                                 </a>
 
