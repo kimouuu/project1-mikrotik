@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class MultiroController extends Controller
 {
+    public function __construct() {
+
+    }
+
     public function index()
     {
         $multiro = Multiro::all();

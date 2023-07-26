@@ -33,7 +33,14 @@
 </nav>
     <div class="container mt-5">
         <h1 class="text-center mb-5">DATA Router</h1>
-        <a href="{{ route('multiro.create') }}" class="btn btn-primary mb-3">TAMBAH DATA</a>
+        @can('admin')
+            <a href="{{ route('multiro.create') }}" class="btn btn-primary mb-3">TAMBAH DATA</a>
+        @endcan
+        @can('staff')
+             <a href="nservice" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
+        @endcan
+
+        <a href= "{{route('loginin') }}" class="btn btn-danger mb-3">Logout</a>
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
