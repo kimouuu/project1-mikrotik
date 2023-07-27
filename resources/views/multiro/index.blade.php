@@ -28,9 +28,7 @@
   </style> --}}
 
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  <!-- Navbar content -->
-</nav>
+
     <div class="container mt-5">
         <h1 class="text-center mb-5">DATA Router</h1>
         @can('admin')
@@ -68,9 +66,9 @@
                             <td>{{ $mltr->router }}</td>
                             <td>{{ $mltr->service?->service}}</td>
                             <td class="d-flex">{{ $mltr->opsi}}
-                                <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a> 
+                                <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a>
 
-  
+
                                 <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm ms-2">
                                     Edit
                                 </a>

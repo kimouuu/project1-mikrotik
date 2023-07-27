@@ -9,6 +9,7 @@ use App\Http\Controllers\nservicecontroller;
 use App\Http\Controllers\MikrotikController;
 use App\Http\Controllers\GuzzleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -52,12 +53,13 @@ Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
 
 Route::resource('users', UserController::class)->middleware('can:admin'); //penerapan can admin
 
+Route::resource('profile', ProfileController::class)->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('multiro', MultiroController::class);
 
     Route::resource('nservice', nservicecontroller::class)->middleware('can:staff'); // penerapan can staff
-    Route::get('logout','LoginController@logout')->name('admin.register');
+    Route::get('logout', 'LoginController@logout')->name('admin.register');
 
     Route::middleware(['auth', 'can:admin'])->group(function () {
         Route::post('logout', 'LoginAdminController@logout')->name('admin.logout');
@@ -65,7 +67,5 @@ Route::middleware(['auth'])->group(function () {
         Route::view('/nservices', 'nservices')->middleware('can:staff');
         Route::view('index', 'users')->middleware('can:role,admin')->name('users');
         Route::view('index', 'nservice')->middleware('can:role,staff')->name('nservice');
-    });
-
+    });
 });
-

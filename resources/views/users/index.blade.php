@@ -42,6 +42,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <td>Id</td>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Password</th>
@@ -52,6 +53,7 @@
                     <tbody>
                         @foreach($users as $key => $user)
                         <tr>
+                            <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->password}}</td>
