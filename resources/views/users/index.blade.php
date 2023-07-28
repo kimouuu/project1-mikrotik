@@ -28,7 +28,11 @@
   </style> --}}
 
 <body>
-
+    <div class="p-2">
+        <a href="{{route('multiro.index')}}" method="POST" class="btn btn-success mb-2">
+           < Back
+        </a>
+    </div>
     <div class="container mt-5">
         <h1 class="text-center mb-5">User</h1>
         <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">TAMBAH USER</a>
@@ -42,6 +46,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <td>Id</td>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Password</th>
@@ -52,6 +57,7 @@
                     <tbody>
                         @foreach($users as $key => $user)
                         <tr>
+                            <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->password}}</td>

@@ -28,9 +28,32 @@
   </style> --}}
 
 <body>
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-  <!-- Navbar content -->
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end " >
+
+        <ul class="nav nav-tabs">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Menu</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/users">User</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/nservice">Service</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="p-2">
+           <a href= "{{route('loginin') }}"  class="btn btn-danger mb-1" >Logout</a>
+        @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{session('success')}}
+        </div>
+        @endif
+        </div>
+
+    </nav>
+
+
     <div class="container mt-5">
         <h1 class="text-center mb-5">DATA Router</h1>
         @can('admin')
@@ -40,16 +63,15 @@
              <a href="nservice" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
         @endcan
 
-        <form action="{{ route('logout') }}" method="POST">
+   <form action="{{ route('logout') }}" method="POST">
             @csrf
             <button type="submit" class="btn btn-danger mb-3">Logout</button>
         </form>
-
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
         </div>
-        @endif
+        @endif --}}
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered">
@@ -72,9 +94,9 @@
                             <td>{{ $mltr->router }}</td>
                             <td>{{ $mltr->service?->service}}</td>
                             <td class="d-flex">{{ $mltr->opsi}}
-                                <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a> 
+                                <a href="{{route( 'multiro.connect', ['multiro'=> $mltr->id, 'service'=>$mltr->service]) }}" class="btn btn-success btn-sm">Connect</a>
 
-  
+
                                 <a href="{{route('multiro.edit', $mltr->id)}}" class="btn btn-primary btn-sm ms-2">
                                     Edit
                                 </a>

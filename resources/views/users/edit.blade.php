@@ -30,7 +30,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Password" name="password" value="{{$user->password ?? old('password')}}"> @error('') <span class="text-danger">{{$massage}}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="service_id" class="form-label">Jabatan</label>
+                        <label for="jabatan" class="form-label">Jabatan</label>
                         <select class="form-control" name="jabatan" id="jabatan">
                             <option >Admin</option>
                             <option >Staff</option>
