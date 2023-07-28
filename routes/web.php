@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\multirocontroller;
 use App\Http\Controllers\nservicecontroller;
@@ -7,6 +10,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MikrotikController;
 use App\Http\Controllers\GuzzleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +25,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+//
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::post('login', [AuthController::class, 'login'])->name('loginpost');
+Route::get('/register', [RegisterController::class, 'view'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::get('/login', [LoginController::class, 'index'])->name('loginin');
+Route::post('/login', [LoginController::class, 'store'])->name('loginin');
+
+// Route::get('multiro', [multiroController::class, 'index'])->name('multiro.index');
 
 Route::get('/connect/{multiro}/{service}', [multirocontroller::class, 'connect'])->name('multiro.connect');
 
@@ -35,10 +47,80 @@ Route::post('mikrotik/{multiro}', [MikrotikController::class, 'store'])->name('h
 
 Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
 
-Route::resource('nservice', nservicecontroller::class);
+<<<<<<< HEAD
+//gatau
+// Route::get('register', [LoginController::class, 'store'])->name('registerpost');
+=======
+Route::resource('users', UserController::class)->middleware('can:admin'); //penerapan can admin
+>>>>>>> 0e52edc557b66f0cec524448ba22bda73fda9419
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('multiro', MultiroController::class);
+    Route::post('logout', LogoutController::class)->name('logout');
+
+    Route::resource('nservice', nservicecontroller::class)->middleware('can:staff'); // penerapan can staff
+
+    // Route::get('/multiro', [multiroController::class, 'index'])->name('multiro.index');
+
+    Route::middleware(['can:admin'])->group(function () {
+        Route::resource('users', UserController::class); //penerapan can admin
+        // Route::view('/', 'welcome')->name('multiro');
+        Route::view('/nservices', 'nservices')->middleware('can:staff');
+        Route::view('index', 'users')->middleware('can:jabatan,admin')->name('users');
+        Route::view('index', 'nservice')->middleware('can:jabatan,staff')->name('nservice');
+
+
+
+<<<<<<< HEAD
+        // Route::get('/', 'LoginController@showRegistrationForm')->name('register');
+        // Route::post('/register', 'LoginController@register');
+        // Route::get('/multiro', [multiroController::class, 'index'])->name('multiro.index');
+
+        // Route::get('/login', [AuthController::class, 'index'])->name('login');
+
+        // Route::post('login', [AuthController::class, 'login'])->name('loginpost');
+
+        // Route::middleware(['auth'])->group(function () {
+        // Route::get('multiro', 'multirocontroller@index');
+        // Route::get('users', 'UserController@index');
+        // Route::get('nservice', 'nservicecontroller@index');
+
+        // Route::group(['middleware' => ['auth']], function () {
+        // Route::get('/multiro', [multiroController::class, 'index'])->name('multiro.index');
+        // });
+        // });
+
+    });
+
+    // Route::group(['middleware' => ['auth', 'admin:admin']], function() {
+// });
+
+
+    // Route::view('/multiro', 'data-admin')->name('admin')->middleware('can:admin');
+// Route::view('/nservice', 'data-staff')->name('staff')->middleware('can:staff');
+
+    // Route::redirect('/', 'register');
+
+    // Route::get('register', function () {
+//     return 'Register';
+// });
+
+});
+=======
+Route::resource('users', UserController::class)->middleware('can:admin'); //penerapan can admin
+
+Route::resource('profile', ProfileController::class)->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('multiro', MultiroController::class);
+
+    Route::resource('nservice', nservicecontroller::class)->middleware('can:staff'); // penerapan can staff
+    Route::get('logout', 'LoginController@logout')->name('admin.register');
 
 Route::resource('users', UserController::class);
-// Route::get('/connect/{multiro}/{service}', [multirocontroller::class, 'connect'])->name('multiro.connect');
+Route::get('/connect/{multiro}/{service}', [multirocontroller::class, 'connect'])->name('multiro.connect');
 Route::as('multiro.')->group(function () {
     Route::resource('', MultiroController::class, ['parameters' => ['' => 'multiro']]);
 });
+
+>>>>>>> 0e52edc557b66f0cec524448ba22bda73fda9419

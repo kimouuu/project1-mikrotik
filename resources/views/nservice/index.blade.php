@@ -32,6 +32,10 @@
     <div class="container mt-5">
         <h1 class="text-center mb-5">Service</h1>
         <a href="{{ route('nservice.create') }}" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger mb-3">Logout</button>
+        </form>
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}
