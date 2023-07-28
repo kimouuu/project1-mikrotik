@@ -12,11 +12,20 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex flex-row-reverse">
+
+
                 <div class="p-2">
                     <a href="{{route('profile.edit', auth()->user()->id)}}" method="POST" class="btn btn-primary mb-2">
                         Edit Profil
                     </a>
                 </div>
+                <div class="p-2">
+                    <a href="{{route('multiro.index')}}" method="POST" class="btn btn-success mb-2">
+                       < Back
+                    </a>
+                </div>
+
+
             </div>
             <div class="card mb-3">
                 <div class="row g-0">

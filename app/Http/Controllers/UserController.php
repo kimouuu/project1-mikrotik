@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,7 +37,7 @@ class UserController extends Controller
         $array['password'] = bcrypt($array['password']);
         $user = User::create($array);
         return redirect()->route('users.index')
-        ->with('success_message', 'Berhasil menambah user baru');
+            ->with('success_message', 'Berhasil menambah user baru');
     }
     public function edit($id)
     {
@@ -64,9 +65,13 @@ class UserController extends Controller
             'password' => 'required',
             'jabatan' => 'required',
         ]);
-        $user->update($request->all());
+        if ($request->has('password') && !empty($request->input('password'))) {
+            $request['password'] = Hash::make($request->input('password'));
 
-        return redirect()->route('users.index')->with('success_message', 'Berhasil mengubah user');
+            $user->update($request->all());
+
+            return redirect()->route('users.index')->with('success_message', 'Berhasil mengubah user');
+        }
     }
 
     /**

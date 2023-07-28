@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -33,8 +34,11 @@ class ProfileController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'jabatan' => 'required',
+            // 'jabatan' => 'required',
         ]);
+        if ($request->has('password') && !empty($request->input('password'))) {
+            $request['password'] = Hash::make($request->input('password'));
+        }
         $profile->update($request->all());
 
         return redirect()->route('profile.index')->with('success_message', 'Berhasil');

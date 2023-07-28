@@ -34,13 +34,13 @@
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" value="{{ $user->password }}">
                                 </div>
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="jabatan" class="form-label">Jabatan</label>
                                     <select class="form-control" id="jabatan" name="jabatan" value="{{ $user->jabatan }}">
                                         <option >Admin</option>
                                         <option >Staff</option>
                                     </select>
-                                </div>
+                                </div> --}}
 
 
                                 <!-- Add more input fields for other profile information -->
