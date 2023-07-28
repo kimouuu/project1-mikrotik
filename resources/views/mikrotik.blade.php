@@ -14,6 +14,12 @@
 <body>
         
     <div class="container">
+
+        <h4 class="mt-5">
+            @if(isset($entity))
+                {!! $entity[0]['name'] !!}
+            @endif
+        </h4>
         <form method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
@@ -23,6 +29,12 @@
             <button type="submit" class="btn btn-primary">Execute</button>
             <a href= "{{route('login') }}" class="btn btn-danger">Logout</a>
         </form>
+       
+        <textarea class="form-control mt-3" rows="15">
+            @if(isset($result))
+                {!! json_encode($result) !!}
+            @endif
+        </textarea>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">

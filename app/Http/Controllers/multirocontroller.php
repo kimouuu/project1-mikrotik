@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RouterosAPI;
 use App\Models\Multiro;
 use App\Models\Nservice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 
 class MultiroController extends Controller
@@ -94,22 +96,31 @@ class MultiroController extends Controller
 
         return to_route('multiro.index')->with('success', 'Router deleted successfully.');
     }
-    public function connect($multiroId, $service)
+    public function connect(Request $request, Multiro $multiro, $service)
     {
-        // Ambil data router berdasarkan ID
-        $router = Multiro::find($multiroId);
-
-        if (!$router) {
+        if (!$multiro) {
             return redirect()->route('multiro.index')->with('error', 'Router not found.');
         }
 
-        // Di sini, Anda bisa menggunakan nilai $service dan melakukan tindakan sesuai dengan bisnis Anda.
-        // Misalnya, Anda dapat menggunakan nilai $service untuk menghubungkan router ke layanan tertentu.
-        // Lakukan tindakan yang sesuai untuk melakukan koneksi sesuai dengan ID dan service yang diberikan.
-        // Misalnya, Anda dapat menggunakan ID dan service untuk mengidentifikasi router yang ingin terhubung
-        // dan melakukan koneksi dengan algoritma atau skenario bisnis yang sesuai.
+        // rest api
+        // $restApiTest =  Http::withBasicAuth($multiro->username, $multiro->password)->get('http://'.$multiro->host.'/rest/interface/ether1');
+        // return $restApiTest->body();
 
-        // Contoh: Menampilkan pesan bahwa router dengan ID tertentu berhasil terhubung ke layanan tertentu.
-        return redirect()->route('login');
+        $ip = $multiro->host;
+        $user = $multiro->username;
+        $pass = $multiro->password; 
+        $API = new RouterosAPI();
+        $API->debug('true');
+
+        if ($API->connect($ip, $user, $pass)) {
+            $result = $API->comm('/system/identity/print');
+            // $result = $API->comm('/interface/print');
+        } else {
+            var_dump($API->error);
+            return 'Koneksi Gagal';
+        }
+
+        return $result;
+        // return redirect()->route('home');
     }
 }
