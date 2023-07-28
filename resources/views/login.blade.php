@@ -40,7 +40,7 @@
             <div class="mb-3">
                 <div class="d-grid">
                     <button type="submit" class="btn btn-outline-primary">Submit</button>
-                    <a href="{{route('users.index')}}" class="btn btn-default">
+                    {{-- <a href="{{route('users.index')}}" class="btn btn-default"> --}}
                 </form>
                 <p>Belum punya akun? <a href="register">Daftar di sini</a></p>
 

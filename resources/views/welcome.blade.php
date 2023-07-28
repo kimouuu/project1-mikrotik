@@ -46,8 +46,7 @@ https://templatemo.com/tm-574-mexant
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
-                          {{-- <li class="scroll-to-section"><a href="#top" class="active">Register</a></li> --}}
-                            <a href="{{ route('loginin') }}">Login</a>
+                          <li class="scroll-to-section"><a href="{{ route('loginin') }}">Login</a></li>
                           {{-- <li class="scroll-to-section"><a href="#services">Services</a></li>
                           <li class="scroll-to-section"><a href="#about">About</a></li> --}}
                           <li class="has-sub">
