@@ -57,8 +57,9 @@ class MultiroController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         //Menampilkan Form Edit multiro
@@ -97,8 +98,22 @@ class MultiroController extends Controller
 
         return to_route('multiro.index')->with('success', 'Router deleted successfully.');
     }
-    public function connect(Multiro $multiro)
+    public function connect($multiroId, $service)
     {
-        //
+        // Ambil data router berdasarkan ID
+        $router = Multiro::find($multiroId);
+
+        if (!$router) {
+            return redirect()->route('multiro.index')->with('error', 'Router not found.');
+        }
+
+        // Di sini, Anda bisa menggunakan nilai $service dan melakukan tindakan sesuai dengan bisnis Anda.
+        // Misalnya, Anda dapat menggunakan nilai $service untuk menghubungkan router ke layanan tertentu.
+        // Lakukan tindakan yang sesuai untuk melakukan koneksi sesuai dengan ID dan service yang diberikan.
+        // Misalnya, Anda dapat menggunakan ID dan service untuk mengidentifikasi router yang ingin terhubung
+        // dan melakukan koneksi dengan algoritma atau skenario bisnis yang sesuai.
+
+        // Contoh: Menampilkan pesan bahwa router dengan ID tertentu berhasil terhubung ke layanan tertentu.
+        return redirect()->route('login');
     }
 }

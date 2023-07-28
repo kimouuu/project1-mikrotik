@@ -50,6 +50,7 @@ Route::post('mikrotik', [MikrotikController::class, 'store'])->name('home.store'
 
 Route::get('guzzle', [GuzzleController::class, 'index'])->name('guzzlehttp');
 
+<<<<<<< HEAD
 Route::resource('users', UserController::class)->middleware('can:admin'); //penerapan can admin
 
 Route::middleware(['auth'])->group(function () {
@@ -103,3 +104,6 @@ Route::middleware(['auth'])->group(function () {
 
     });
 });
+=======
+
+>>>>>>> bb3c991b3d4dc01f494328fcecb3e54496514097
