@@ -63,7 +63,10 @@
              <a href="nservice" class="btn btn-primary mb-3">TAMBAH SERVICE</a>
         @endcan
 
-        {{-- <a href= "{{route('loginin') }}" class="btn btn-danger mb-3">Logout</a>
+   <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger mb-3">Logout</button>
+        </form>
         @if (session('success'))
         <div class="alert alert-success" role="alert">
             {{session('success')}}

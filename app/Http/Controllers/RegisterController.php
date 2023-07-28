@@ -4,36 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\multiro;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function register()
+    public function view()
     {
-         return view ('register');
+        return view('register');
     }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
-
         $request->validate([
-            'email' => 'required',
-            'name' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $email = $request->post('email');
-        $name = $request->post('name');
-        $pass = $request->post('pass');
+        // Create the user
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        $data = [
-            'email' => $email,
-            'name' => $name,
-            'pass' => $pass,
-        ];
-
-        $request->session()->put($data);
-
-
-        return redirect()->route('multiro.index');
-
-}
+        return redirect()->route('users.index')->with('success', 'Registration successful. You can now log in.');
+    }
 }
