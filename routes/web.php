@@ -19,13 +19,17 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/login', [AuthController::class, 'index'])->name('login');
 
-Route::post('login', [AuthController::class, 'login'])->name('loginpost');
+Route::get('/register', [RegisterController::class, 'view'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::get('/login', [LoginController::class, 'index'])->name('loginin');
+Route::post('/login', [LoginController::class, 'store'])->name('loginin');
 
 Route::get('mikrotik', [MikrotikController::class, 'index'])->name('home');
 
@@ -42,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('multiro', MultiroController::class);
 
     Route::resource('nservice', nservicecontroller::class)->middleware('can:staff'); // penerapan can staff
-    Route::get('logout','LoginController@logout')->name('admin.register');
+    Route::get('logout', 'LoginController@logout')->name('admin.register');
 
     Route::middleware(['auth', 'can:admin'])->group(function () {
         Route::post('logout', 'LoginAdminController@logout')->name('admin.logout');
@@ -50,6 +54,5 @@ Route::middleware(['auth'])->group(function () {
         Route::view('/nservices', 'nservices')->middleware('can:staff');
         Route::view('index', 'users')->middleware('can:role,admin')->name('users');
         Route::view('index', 'nservice')->middleware('can:role,staff')->name('nservice');
-    });
-
+    });
 });
